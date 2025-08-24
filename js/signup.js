@@ -52,21 +52,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            // Step 2: Make API call to backend
-            // The api.js script must be loaded before this one
             const response = await api.signup(fullname, email, password, phone);
-
+            
             if (response.success) {
                 showError('Sign-up successful! Redirecting to signin page...', 'success');
                 setTimeout(() => {
                     window.location.href = 'signin.html';
                 }, 1000);
+            } else if (response.status === 409) {
+                // Check for 409 Conflict
+                showError('An account with this email already exists.');
             } else {
                 showError(response.message || 'Sign-up failed. Please try again.');
             }
         } catch (error) {
             console.error('Signup failed:', error);
-            showError('Sign-up failed. Check your network.');
+            // This catches network errors or other non-200 status codes
+            if (error.message.includes('409')) {
+                showError('An account with this email already exists.');
+            } else {
+                showError('Sign-up failed. Check your network.');
+            }
         }
     });
 
