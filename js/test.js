@@ -1,4 +1,4 @@
-// js/test.js
+// Test page functionality
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('fileInput');
     const previewCard = document.getElementById('previewCard');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             previewImg.src = URL.createObjectURL(file);
             hideAllCards();
             previewCard.classList.remove('hidden');
-            previewCard.classList.add('fade-enter-active');
+            previewCard.classList.add('card-enter-active');
             stopCameraStream();
         }
     });
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             hideAllCards();
             previewCard.classList.remove('hidden');
-            previewCard.classList.add('fade-enter-active');
+            previewCard.classList.add('card-enter-active');
             stopCameraStream();
         }, 'image/png');
     });
