@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta basics -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Terms & Conditions - Agro Med</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inline tweaks for brand colors (optional utility) -->
+  <style>
+    /* Brand helpers for quick reuse in comments/reference */
+    :root {
+      --agro-green: #2F855A;  /* soothing green */
+      --agro-yellow: #ECC94B; /* accent yellow */
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-green-50 text-gray-800 antialiased">
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white px-3 py-2 rounded-md shadow">
+    Skip to content
+  </a>
+
+  <!-- =========================================
+       Header / Branding
+       - Contains logo, page title, and navigation
+       ========================================= -->
+  <header class="w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur sticky top-0 z-10">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-3">
+        <!-- Logo + Title -->
+        <div class="flex items-center gap-3">
+          <!-- Replace src with your actual logo path -->
+          <img src="assets/logo.jpg" alt="Agro Med Logo" class="h-10 w-10 rounded-full ring-2 ring-[#2F855A]/20" />
+          <div>
+            <p class="text-xs uppercase tracking-wide text-gray-500">Agro Med</p>
+            <h1 class="text-lg sm:text-xl font-bold text-[#2F855A]">Terms &amp; Conditions</h1>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav aria-label="Primary" class="flex items-center gap-4 text-sm">
+          <a href="index.html" class="font-medium text-gray-700 hover:text-[#2F855A] focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:ring-offset-2 focus:ring-offset-white rounded px-2 py-1">
+            Home
+          </a>
+          <a href="signin.html" class="inline-flex items-center gap-2 rounded-md bg-[#ECC94B] px-3 py-1.5 font-semibold text-white shadow hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:ring-offset-2 focus:ring-offset-white">
+            Sign In
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================
+       Main Content Container
+       - Centered card with proper padding & spacing
+       ========================================= -->
+  <main id="main-content" class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
+    <article class="bg-white/90 backdrop-blur-md rounded-2xl shadow-md ring-1 ring-gray-100">
+      <!-- Page intro / hero for readability -->
+      <header class="px-6 sm:px-10 pt-8 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#2F855A]">Introduction / Acceptance of Terms</h2>
+        <p class="mt-3 text-gray-600">
+          These Terms &amp; Conditions (“Terms”) govern your access to and use of the Agro Med website, applications,
+          and related services (“Service”). By accessing or using the Service, you acknowledge that you have read,
+          understood, and agree to be bound by these Terms. If you do not agree, you must discontinue use of the Service.
+        </p>
+      </header>
+
+      <!-- Divider -->
+      <hr class="border-gray-100" />
+
+      <!-- Sections wrapper -->
+      <div class="px-6 sm:px-10 py-8 space-y-10 leading-relaxed">
+        <!-- Use of the Service -->
+        <section aria-labelledby="use-of-service">
+          <h3 id="use-of-service" class="text-xl font-bold text-gray-900">Use of the Service</h3>
+          <p class="mt-2 text-gray-700">
+            The Service is provided for informational and operational purposes in support of agricultural decision-making.
+            You agree to use the Service only for lawful purposes and in accordance with applicable regulations.
+            We may modify, suspend, or discontinue any part of the Service at any time without notice.
+          </p>
+        </section>
+
+        <!-- User Responsibilities -->
+        <section aria-labelledby="user-resp">
+          <h3 id="user-resp" class="text-xl font-bold text-gray-900">User Responsibilities</h3>
+          <p class="mt-2 text-gray-700">
+            You are responsible for maintaining the confidentiality of your account credentials and for all activities
+            that occur under your account. You agree not to misuse the Service, including but not limited to attempting
+            unauthorized access, interfering with service availability, or submitting false or misleading information.
+          </p>
+        </section>
+
+        <!-- Privacy & Data Usage -->
+        <section aria-labelledby="privacy">
+          <h3 id="privacy" class="text-xl font-bold text-gray-900">Privacy &amp; Data Usage</h3>
+          <p class="mt-2 text-gray-700">
+            We process personal information in accordance with our Privacy Policy (to be provided or linked).
+            By using the Service, you consent to the collection, use, and sharing of information as described therein,
+            including processing necessary to provide core features, improve quality, and ensure security.
+          </p>
+        </section>
+
+        <!-- Intellectual Property Rights -->
+        <section aria-labelledby="ipr">
+          <h3 id="ipr" class="text-xl font-bold text-gray-900">Intellectual Property Rights</h3>
+          <p class="mt-2 text-gray-700">
+            Unless otherwise indicated, all content, trademarks, graphics, interfaces, and code appearing on the Service
+            are owned by Agro Med or its licensors and are protected by intellectual property laws. You may not copy,
+            reproduce, modify, distribute, or create derivative works without prior written consent.
+          </p>
+        </section>
+
+        <!-- Limitation of Liability -->
+        <section aria-labelledby="liability">
+          <h3 id="liability" class="text-xl font-bold text-gray-900">Limitation of Liability</h3>
+          <p class="mt-2 text-gray-700">
+            To the maximum extent permitted by law, Agro Med shall not be liable for any indirect, incidental, special,
+            consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly,
+            or any loss of data, use, goodwill, or other intangible losses resulting from your access to or use of the Service.
+          </p>
+        </section>
+
+        <!-- Governing Law -->
+        <section aria-labelledby="law">
+          <h3 id="law" class="text-xl font-bold text-gray-900">Governing Law</h3>
+          <p class="mt-2 text-gray-700">
+            These Terms shall be governed by and construed in accordance with the laws applicable in your jurisdiction,
+            without regard to its conflict of law principles. Venue and jurisdiction for any dispute shall lie with the
+            competent courts located in the applicable region.
+          </p>
+        </section>
+
+        <!-- Contact Information -->
+        <section aria-labelledby="contact">
+          <h3 id="contact" class="text-xl font-bold text-gray-900">Contact Information</h3>
+          <p class="mt-2 text-gray-700">
+            If you have questions about these Terms or the Service, please contact us at
+            <a href="mailto:support@agromed.example" class="text-[#2F855A] underline decoration-[#2F855A]/30 hover:decoration-[#2F855A]">
+              support@agromed.example
+            </a>.
+          </p>
+        </section>
+
+        <!-- Last Updated -->
+        <section aria-labelledby="last-updated">
+          <h3 id="last-updated" class="text-xl font-bold text-gray-900">Last Updated</h3>
+          <p class="mt-2 text-gray-700">
+            These Terms are subject to periodic updates. Please review this page regularly to stay informed of changes.
+          </p>
+        </section>
+      </div>
+    </article>
+
+    <!-- Subtle footer-style nav under the card -->
+    <div class="mt-6 flex items-center justify-between text-sm">
+      <a href="index.html" class="inline-flex items-center gap-2 text-gray-700 hover:text-[#2F855A] transition focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:ring-offset-2 rounded px-2 py-1">
+        ← Back to Home
+      </a>
+      <a href="signin.html" class="inline-flex items-center gap-2 rounded-md bg-[#ECC94B] px-3 py-1.5 font-semibold text-white shadow hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:ring-offset-2">
+        Sign In
+      </a>
+    </div>
+  </main>
+
+  <!-- =========================================
+       Footer (optional)
+       - Keep simple for readability
+       ========================================= -->
+  <footer class="mt-10 pb-8">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
+      © <span id="year"></span> Agro Med. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/terms.js"></script>
+</body>
+</html>

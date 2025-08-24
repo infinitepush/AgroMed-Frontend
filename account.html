@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Agro Med</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .relative {
+            position: relative;
+        }
+        .absolute {
+            position: absolute;
+        }
+        .inset-y-0 {
+            top: 0;
+            bottom: 0;
+        }
+        .right-0 {
+            right: 0;
+        }
+        .pr-3 {
+            padding-right: 0.75rem;
+        }
+        .flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-[#2F855A] text-white flex flex-col">
+            <div class="p-6 flex items-center space-x-3">
+                <img src="assets/logo.jpg" alt="Agro Med" class="w-12 h-12 rounded-full">
+                <span class="text-xl font-bold">Agro Med</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="dashboard.html" class="block py-2 px-3 rounded hover:bg-green-700 bg-green-700">Dashboard</a>
+                <a href="test.html" class="block py-2 px-3 rounded hover:bg-green-700">Test</a>
+                <a href="history.html" class="block py-2 px-3 rounded hover:bg-green-700">History</a>
+                <a href="news.html" class="block py-2 px-3 rounded hover:bg-green-700">News</a>
+                <a href="account.html" class="block py-2 px-3 rounded hover:bg-green-700">Account</a>
+                <a href="feedback.html" class="block py-2 px-3 rounded hover:bg-green-700">Feedback</a>
+                <a href="signin.html" class="block py-2 px-3 rounded hover:bg-green-700">Logout</a>
+            </nav>
+        </aside>
+        <main class="flex-1 p-6">
+            <section class="bg-white rounded-xl shadow p-6 max-w-xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Profile</h2>
+                <p class="text-gray-700 mb-6">View and manage your account information.</p>
+                <div class="flex flex-col space-y-4">
+                    <form id="profileForm">
+                        <div>
+                            <label class="block text-gray-700 mb-1 font-medium">Full Name</label>
+                            <input type="text" id="fullname" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:border-[#2F855A] transition">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1 font-medium">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:border-[#2F855A] transition" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1 font-medium">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:border-[#2F855A] transition">
+                        </div>
+                    </form>
+                    <div id="passwordSection" class="hidden">
+                        <h3 class="text-xl font-bold text-gray-800 mt-6 mb-2">Change Password</h3>
+                        <form id="passwordForm" class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-1 font-medium">New Password</label>
+                                <div class="relative">
+                                    <input type="password" id="newPassword" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:border-[#2F855A] transition">
+                                    <button type="button" id="toggleNewPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-1 font-medium">Confirm New Password</label>
+                                <div class="relative">
+                                    <input type="password" id="confirmPassword" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2F855A] focus:border-[#2F855A] transition">
+                                    <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit" id="savePasswordBtn" class="w-full py-2 rounded-lg bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition">
+                                Save New Password
+                            </button>
+                        </form>
+                    </div>
+                    <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4 mt-4">
+                        <button id="saveBtn" class="w-full md:w-auto py-2 px-4 rounded-lg bg-[#2F855A] text-white font-semibold hover:bg-green-700 transition">
+                            Save Changes
+                        </button>
+                        <button id="changePassBtn" class="w-full md:w-auto py-2 px-4 rounded-lg bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition">
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>

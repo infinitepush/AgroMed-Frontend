@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Agro Med</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/api.js"></script>
+    <script src="js/history.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-[#2F855A] text-white flex flex-col">
+            <div class="p-6 flex items-center space-x-3">
+                <img src="assets/logo.jpg" alt="Agro Med" class="w-12 h-12 rounded-full">
+                <span class="text-xl font-bold">Agro Med</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="dashboard.html" class="block py-2 px-3 rounded hover:bg-green-700">Dashboard</a>
+                <a href="test.html" class="block py-2 px-3 rounded hover:bg-green-700">Test</a>
+                <a href="history.html" class="block py-2 px-3 rounded hover:bg-green-700 bg-green-700">History</a>
+                <a href="news.html" class="block py-2 px-3 rounded hover:bg-green-700">News</a>
+                <a href="account.html" class="block py-2 px-3 rounded hover:bg-green-700">Account</a>
+                <a href="feedback.html" class="block py-2 px-3 rounded hover:bg-green-700">Feedback</a>
+                <a href="signin.html" class="block py-2 px-3 rounded hover:bg-green-700">Logout</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6">
+            <section class="bg-white rounded-xl shadow p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">History of Detected Diseases</h2>
+                        <p class="text-gray-700">Review your past crop disease tests and suggested treatments.</p>
+                    </div>
+                </div>
+
+                <div id="loadingState" class="hidden text-center py-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">Loading history...</p>
+                </div>
+
+                <div id="errorState" class="hidden text-center py-8">
+                    <p class="text-red-600 mb-4">Failed to load history. Please try again.</p>
+                    <button id="retryBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        Retry
+                    </button>
+                </div>
+
+                <div id="emptyState" class="hidden text-center py-8">
+                    <p class="text-gray-600 mb-4">No detection history found.</p>
+                    <a href="test.html" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        Start Your First Test
+                    </a>
+                </div>
+
+                <div id="historyTable" class="hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-[#2F855A] text-white">
+                                <tr>
+                                    <th class="py-2 px-4 text-left">Date & Time</th>
+                                    <th class="py-2 px-4 text-left">Image</th>
+                                    <th class="py-2 px-4 text-left">Crop</th>
+                                    <th class="py-2 px-4 text-left">Disease</th>
+                                    <th class="py-2 px-4 text-left">Confidence</th>
+                                    <th class="py-2 px-4 text-left">Solution</th>
+                                    <th class="py-2 px-4 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody" class="text-gray-700">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

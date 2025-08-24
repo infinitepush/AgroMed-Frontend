@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News - Agro Med</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#2F855A] text-white flex flex-col">
+      <div class="p-6 flex items-center space-x-3">
+        <img src="assets/logo.jpg" alt="Agro Med" class="w-12 h-12 rounded-full">
+        <span class="text-xl font-bold">Agro Med</span>
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a href="dashboard.html" class="block py-2 px-3 rounded hover:bg-green-700 bg-green-700">Dashboard</a>
+        <a href="test.html" class="block py-2 px-3 rounded hover:bg-green-700">Test</a>
+        <a href="history.html" class="block py-2 px-3 rounded hover:bg-green-700">History</a>
+        <a href="news.html" class="block py-2 px-3 rounded hover:bg-green-700">News</a>
+        <a href="account.html" class="block py-2 px-3 rounded hover:bg-green-700">Account</a>
+        <a href="feedback.html" class="block py-2 px-3 rounded hover:bg-green-700">Feedback</a>
+        <a href="signin.html" class="block py-2 px-3 rounded hover:bg-green-700">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <section class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Agricultural News</h2>
+        <p class="text-gray-700 mb-4">Stay updated with the latest news and updates in agriculture.</p>
+
+        <!-- Scrollable news container -->
+        <div class="max-h-[70vh] overflow-y-auto space-y-4">
+          
+          <article class="p-4 bg-green-50 rounded-lg shadow hover:bg-green-100 transition">
+            <h3 class="font-semibold text-lg text-gray-800 mb-1">Government Launches New Crop Insurance Scheme</h3>
+            <p class="text-gray-700 text-sm">The government has introduced a new crop insurance program to support farmers against losses due to adverse weather conditions.</p>
+            <span class="text-gray-500 text-xs">2025-08-22</span>
+          </article>
+
+          <article class="p-4 bg-green-50 rounded-lg shadow hover:bg-green-100 transition">
+            <h3 class="font-semibold text-lg text-gray-800 mb-1">Organic Farming Gains Momentum in Rural India</h3>
+            <p class="text-gray-700 text-sm">Farmers are increasingly adopting organic farming practices, enhancing soil health and crop yield sustainability.</p>
+            <span class="text-gray-500 text-xs">2025-08-20</span>
+          </article>
+
+          <article class="p-4 bg-green-50 rounded-lg shadow hover:bg-green-100 transition">
+            <h3 class="font-semibold text-lg text-gray-800 mb-1">AgriTech Startups Boost Crop Disease Detection</h3>
+            <p class="text-gray-700 text-sm">Emerging AgriTech startups are deploying AI-based solutions for early detection of crop diseases, aiding timely interventions.</p>
+            <span class="text-gray-500 text-xs">2025-08-18</span>
+          </article>
+
+          <article class="p-4 bg-green-50 rounded-lg shadow hover:bg-green-100 transition">
+            <h3 class="font-semibold text-lg text-gray-800 mb-1">New Guidelines for Sustainable Water Usage in Farming</h3>
+            <p class="text-gray-700 text-sm">The Ministry of Agriculture has released new guidelines to promote sustainable irrigation and water management in farms.</p>
+            <span class="text-gray-500 text-xs">2025-08-15</span>
+          </article>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

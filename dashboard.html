@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Agro Med</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pulse animation for steps */
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#2F855A] text-white flex flex-col">
+      <div class="p-6 flex items-center space-x-3">
+        <img src="assets/logo.jpg" alt="Agro Med" class="w-12 h-12 rounded-full">
+        <span class="text-xl font-bold">Agro Med</span>
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a href="dashboard.html" class="block py-2 px-3 rounded hover:bg-green-700 bg-green-700">Dashboard</a>
+        <a href="test.html" class="block py-2 px-3 rounded hover:bg-green-700">Test</a>
+        <a href="history.html" class="block py-2 px-3 rounded hover:bg-green-700">History</a>
+        <a href="news.html" class="block py-2 px-3 rounded hover:bg-green-700">News</a>
+        <a href="account.html" class="block py-2 px-3 rounded hover:bg-green-700">Account</a>
+        <a href="feedback.html" class="block py-2 px-3 rounded hover:bg-green-700">Feedback</a>
+        <a href="signin.html" class="block py-2 px-3 rounded hover:bg-green-700">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-8">
+      <!-- Welcome Section -->
+      <section class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome to Agro Med!</h2>
+        <p class="text-gray-700 mb-4">Monitor your crops, detect diseases, and stay updated with the latest agricultural news.</p>
+      </section>
+
+      <!-- Features Section -->
+      <section class="grid md:grid-cols-3 gap-6">
+        <div class="bg-green-50 p-4 rounded-xl shadow hover:bg-green-100 transition">
+          <h3 class="font-semibold text-lg mb-2 text-gray-800">Crop Disease Detection</h3>
+          <p class="text-gray-700 text-sm">Upload images or use your camera to detect crop diseases and get actionable recommendations.</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-xl shadow hover:bg-green-100 transition">
+          <h3 class="font-semibold text-lg mb-2 text-gray-800">History & Records</h3>
+          <p class="text-gray-700 text-sm">Keep track of all your previous tests and their results. Quick access via the History tab.</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-xl shadow hover:bg-green-100 transition">
+          <h3 class="font-semibold text-lg mb-2 text-gray-800">Latest Agricultural News</h3>
+          <p class="text-gray-700 text-sm">Stay informed about government schemes, market updates, and agri-tech advancements.</p>
+        </div>
+      </section>
+
+      <!-- How to Use Section -->
+      <section class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">How to Use Agro Med</h2>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center">
+            <div class="w-24 h-24 border-4 border-[#2F855A] rounded-full flex items-center justify-center text-lg font-semibold text-[#2F855A] pulse" aria-label="Step 1: Select Crop">1</div>
+            <p class="mt-2 text-gray-700 text-center text-sm">Select Crop</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="md:flex hidden items-center">
+            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="md:hidden flex items-center justify-center my-2">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0l-7-7m7 7l7-7"></path>
+            </svg>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center">
+            <div class="w-24 h-24 border-4 border-[#2F855A] rounded-full flex items-center justify-center text-lg font-semibold text-[#2F855A] pulse" aria-label="Step 2: Upload / Capture Image">2</div>
+            <p class="mt-2 text-gray-700 text-center text-sm">Upload / Capture Image</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="md:flex hidden items-center">
+            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="md:hidden flex items-center justify-center my-2">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0l-7-7m7 7l7-7"></path>
+            </svg>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center">
+            <div class="w-24 h-24 border-4 border-[#2F855A] rounded-full flex items-center justify-center text-lg font-semibold text-[#2F855A] pulse" aria-label="Step 3: Analyze & Detect">3</div>
+            <p class="mt-2 text-gray-700 text-center text-sm">Analyze & Detect</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="md:flex hidden items-center">
+            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="md:hidden flex items-center justify-center my-2">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0l-7-7m7 7l7-7"></path>
+            </svg>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex flex-col items-center">
+            <div class="w-24 h-24 border-4 border-[#2F855A] rounded-full flex items-center justify-center text-lg font-semibold text-[#2F855A] pulse" aria-label="Step 4: Get Recommendations">4</div>
+            <p class="mt-2 text-gray-700 text-center text-sm">Get Recommendations</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Contact Information -->
+      <section class="bg-green-50 rounded-xl shadow p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Contact Us</h2>
+        <p class="text-gray-700 mb-2">Email: support@agromed.com</p>
+        <p class="text-gray-700 mb-2">Phone: +91 9876543210</p>
+        <p class="text-gray-700">Address: 123 Agro Street, Farm City, India</p>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
