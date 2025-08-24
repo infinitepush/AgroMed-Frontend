@@ -1,6 +1,13 @@
 // js/history.js
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Add this check at the very beginning of the script
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'signin.html';
+        return;
+    }
+
     const historyTableBody = document.getElementById('historyTableBody');
     const loadingState = document.getElementById('loadingState');
     const errorState = document.getElementById('errorState');

@@ -1,5 +1,13 @@
-// Test page functionality
-document.addEventListener('DOMContentLoaded', function() {
+// js/test.js
+
+document.addEventListener('DOMContentLoaded', async function() {
+    // Add this check at the very beginning of the script
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'signin.html';
+        return;
+    }
+
     const fileInput = document.getElementById('fileInput');
     const previewCard = document.getElementById('previewCard');
     const loadingCard = document.getElementById('loadingCard');

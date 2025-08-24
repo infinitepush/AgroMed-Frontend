@@ -4,6 +4,7 @@ class ApiService {
         this.baseURL = 'https://agro-med-backend-isuh.onrender.com';
     }
 
+    // AUTHENTICATION
     async signup(fullname, email, password, phone) {
         try {
             const response = await fetch(`${this.baseURL}/auth/signup`, {
@@ -38,8 +39,7 @@ class ApiService {
         }
     }
 
-    // New API call for getting user profile
-    // GET /auth/profile (protected route)
+    // USER PROFILE
     async getUserProfile(token) {
         try {
             const response = await fetch(`${this.baseURL}/auth/profile`, {
@@ -49,11 +49,9 @@ class ApiService {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             const data = await response.json();
             return data.user;
         } catch (error) {
@@ -62,22 +60,66 @@ class ApiService {
         }
     }
 
-    // New API call for uploading the image
-    // POST /upload
-    async uploadImage(imageFile) {
+    async updateProfile(token, userData) {
         try {
+            const response = await fetch(`${this.baseURL}/auth/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(userData)
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Update profile error:', error);
+            throw error;
+        }
+    }
+
+    async changePassword(token, newPassword) {
+        try {
+            const response = await fetch(`${this.baseURL}/auth/change-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ newPassword })
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Change password error:', error);
+            throw error;
+        }
+    }
+
+    // IMAGE AND PREDICTION
+    async uploadImage(imageFile, token) {
+        try {
+            if (!token) {
+                throw new Error('Not authenticated.');
+            }
             const formData = new FormData();
-            formData.append('image', imageFile); // CORRECT KEY: 'image'
+            formData.append('image', imageFile);
 
             const response = await fetch(`${this.baseURL}/upload`, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             return await response.json();
         } catch (error) {
             console.error('Upload error:', error);
@@ -85,18 +127,21 @@ class ApiService {
         }
     }
 
-    // New API call for getting a prediction
-    // POST /predict/:imageId
-    async getPrediction(imageId) {
+    async getPrediction(imageId, token) {
         try {
+            if (!token) {
+                throw new Error('Not authenticated.');
+            }
             const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
-                method: 'POST' // Backend expects a POST request
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             return await response.json();
         } catch (error) {
             console.error('Prediction error:', error);
@@ -104,30 +149,38 @@ class ApiService {
         }
     }
 
-    // GET /history - Fetch all prediction history (fixed path)
-    async getHistory() {
+    async getHistory(token) {
         try {
+            if (!token) {
+                throw new Error('Not authenticated.');
+            }
             const response = await fetch(`${this.baseURL}/history`, {
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
-            return await await response.json();
+            return await response.json();
         } catch (error) {
             console.error('History fetch error:', error);
             throw error;
         }
     }
 
-    // Add this method inside the ApiService class
-    async submitFeedback(predictionId, isCorrect, notes) {
+    async submitFeedback(predictionId, isCorrect, notes, token) {
         try {
+            if (!token) {
+                throw new Error('Not authenticated.');
+            }
             const response = await fetch(`${this.baseURL}/feedback`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify({
                     prediction_id: predictionId,
                     is_correct: isCorrect,
@@ -143,57 +196,6 @@ class ApiService {
             console.error('Feedback submission error:', error);
             throw error;
         }
-    }
-
-    // Add this method to your ApiService class in js/api.js
-async changePassword(token, newPassword) {
-    try {
-        const response = await fetch(`${this.baseURL}/auth/change-password`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ newPassword })
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Change password error:', error);
-        throw error;
-    }
-}
-// Add this new method to the ApiService class in js/api.js
-async updateProfile(token, userData) {
-    try {
-        const response = await fetch(`${this.baseURL}/auth/profile`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(userData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Update profile error:', error);
-        throw error;
-    }
-}
-    // Helper method to handle errors
-    handleError(error) {
-        console.error('API Error:', error);
-        return {
-            success: false,
-            message: error.message || 'An error occurred',
-            error: error
-        };
     }
 }
 
