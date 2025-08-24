@@ -1,13 +1,5 @@
-// js/test.js
-
-document.addEventListener('DOMContentLoaded', async function() {
-    // Add this check at the very beginning of the script
-    const token = localStorage.getItem('token');
-    if (!token) {
-        window.location.href = 'signin.html';
-        return;
-    }
-
+// Test page functionality
+document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('fileInput');
     const previewCard = document.getElementById('previewCard');
     const loadingCard = document.getElementById('loadingCard');
@@ -26,6 +18,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     let currentFile = null;
     let cameraStream = null;
+    
+    // Check for authentication token once
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'signin.html';
+        return;
+    }
 
     // Show preview on file select
     fileInput.addEventListener('change', (e) => {
@@ -92,12 +91,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         stopCameraStream();
 
         try {
-            const uploadResponse = await api.uploadImage(currentFile);
+            const uploadResponse = await api.uploadImage(currentFile, token); // Pass the token here
             if (!uploadResponse.success) {
                 throw new Error(uploadResponse.message);
             }
             const imageId = uploadResponse.image.id;
-            const predictionResponse = await api.getPrediction(imageId);
+            const predictionResponse = await api.getPrediction(imageId, token); // Pass the token here
             if (!predictionResponse.success) {
                 throw new Error(predictionResponse.message);
             }
