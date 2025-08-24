@@ -1,7 +1,6 @@
-// js/history.js
-
+// History page functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Add this check at the very beginning of the script
+    // Check for authentication token once
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = 'signin.html';
@@ -14,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const emptyState = document.getElementById('emptyState');
     const historyTable = document.getElementById('historyTable');
     
-    // This function will fetch all predictions from the backend
     const fetchHistory = async () => {
         showLoading();
         try {
-            const response = await api.getHistory();
+            // Pass the token to the API call
+            const response = await api.getHistory(token);
             if (response.success) {
                 if (response.predictions.length === 0) {
                     showEmptyState();
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Displays data in the table
     const populateTable = (predictions) => {
         historyTableBody.innerHTML = '';
         predictions.forEach(p => {
@@ -63,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         historyTable.classList.remove('hidden');
     };
 
-    // Helper functions for UI states
     const showLoading = () => {
         loadingState.classList.remove('hidden');
         historyTable.classList.add('hidden');
