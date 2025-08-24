@@ -1,81 +1,108 @@
-🌿 AgroMed Frontend
+<h1 align="center">🌿 AgroMed Frontend</h1>
 
-The AgroMed Frontend is a responsive, user-friendly web interface designed to help farmers and gardeners identify crop diseases through image analysis. Built to work seamlessly with the AgroMed backend API, it allows users to upload plant images, view predictions, track their testing history, and provide valuable feedback.
+<p align="center">
+  A modern, responsive web application that helps farmers and gardeners identify crop diseases through image analysis.
+  <br />
+  Built with 💻 HTML, ⚡ JavaScript, and 🎨 Tailwind CSS.
+</p>
 
-🚀 Features
+<hr />
 
-📸 Image Upload
-Upload a picture of a plant to get a disease prediction from the backend.
+## 🚀 Features
 
-🔐 User Authentication
-Securely sign up and sign in to manage your profile and history.
+- 📸 **Image Upload**  
+  Upload plant images to receive disease predictions.
 
-📊 Prediction History
-View a list of your past tests and disease detection results.
+- 🔐 **User Authentication**  
+  Secure sign-up and sign-in flow to manage accounts.
 
-📝 Feedback System
-Submit feedback on the accuracy of the predictions received.
+- 📊 **Prediction History**  
+  View previous tests and prediction results.
 
-👤 Dynamic Profile
-View and update your personal account information.
+- 📝 **Feedback System**  
+  Submit feedback on prediction accuracy to improve model performance.
 
-🛠 Getting Started
-✅ Prerequisites
+- 👤 **Dynamic Profile**  
+  Update personal info and manage your profile settings.
 
-A modern web browser
+<hr />
 
-A running instance of the AgroMed Backend (deployed on Render or locally)
+## 🛠 Getting Started
 
-📦 Installation
+### ✅ Prerequisites
 
-Clone the repository:
+- A modern web browser (Chrome, Firefox, Edge, etc.)
+- A running instance of the **AgroMed Backend** (hosted or local)
 
-git clone https://github.com/infinitepush/AgroMed-Frontend.git
+---
 
+### 📦 Installation
 
-Navigate into the project directory:
+1. **Clone the repository:**
 
-cd AgroMed-Frontend
+   ```bash
+   git clone https://github.com/infinitepush/AgroMed-Frontend.git
+   ```
 
+2. **Navigate into the project directory:**
 
-Run the project using a local server (recommended: Live Server extension in VS Code):
+   ```bash
+   cd AgroMed-Frontend
+   ```
 
-Open the project in VS Code.
+3. **Run the project using a local server:**
 
-Right-click on index.html.
+   💡 *Tip: The easiest way is to use the **Live Server** extension in VS Code.*
 
-Select "Open with Live Server".
+   - Open the project in **VS Code**.
+   - Right-click on `index.html`.
+   - Select **"Open with Live Server"**.
 
-The frontend should now be running and connected to your live backend.
+✅ The frontend will now be live and connected to the backend.
 
-📁 Project Structure
+<hr />
+
+## 📁 Project Structure
+
+```
 AgroMed-Frontend/
 ├── assets/             # Images and static assets
-├── js/                 # JavaScript files for front-end logic
-│   ├── account.js      # User profile functionality
-│   ├── api.js          # API request logic
-│   ├── feedback.js     # Feedback submission logic
-│   ├── history.js      # Prediction history logic
-│   ├── signin.js       # Sign-in functionality
-│   ├── signup.js       # Sign-up functionality
-│   └── test.js         # Image upload and test logic
-├── account.html        # User profile page
-├── dashboard.html      # Main user dashboard
-├── feedback.html       # Feedback form page
-├── history.html        # Prediction history page
+├── js/                 # JavaScript files for frontend logic
+│   ├── account.js      # User profile page logic
+│   ├── api.js          # API integration logic
+│   ├── feedback.js     # Handles feedback form submission
+│   ├── history.js      # Loads and displays prediction history
+│   ├── signin.js       # Handles sign-in process
+│   ├── signup.js       # Handles user registration
+│   └── test.js         # Handles image upload and test flow
+├── account.html        # Profile management UI
+├── dashboard.html      # Main dashboard page
+├── feedback.html       # Feedback form UI
+├── history.html        # History of past predictions
 ├── index.html          # Landing page
-├── signin.html         # Sign-in page
-├── signup.html         # Sign-up page
-└── test.html           # Image upload & prediction page
+├── signin.html         # Login page
+├── signup.html         # Register page
+└── test.html           # Upload test page
+```
 
-🧰 Technologies Used
+<hr />
 
-HTML5 – Markup structure
+## 🧰 Technologies Used
 
-JavaScript (ES6+) – Frontend logic & API interaction
+| Technology     | Description                                      |
+|----------------|--------------------------------------------------|
+| **HTML5**      | Semantic markup for structuring web content      |
+| **JavaScript** | Frontend logic and backend API communication     |
+| **Tailwind CSS** | Utility-first CSS framework for responsive UI |
 
-Tailwind CSS – Utility-first CSS for modern, responsive UI
+<hr />
 
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 
-Special thanks to TyroBytes team for the collaborative effort in building and debugging this project. Their persistence and contributions played a crucial role in making AgroMed a success.
+A huge thank you to **Piyush** for the collaborative development, debugging, and overall project support. Your expertise and dedication were key to this success.
+
+---
+
+<p align="center">
+  Made with ❤️ by the AgroMed Team
+</p>
