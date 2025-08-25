@@ -99,7 +99,7 @@ AgroMed-Frontend/
 
 ## 🙏 Acknowledgments
 
-A huge thank you to **Piyush** for the collaborative development, debugging, and overall project support. Your expertise and dedication were key to this success.
+A huge thank you to **AgroMed Team** for the collaborative development, debugging, and overall project support. Your expertise and dedication were key to this success.
 
 ---
 
