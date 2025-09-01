@@ -1,203 +1,123 @@
-// Simple API Service for Agro Med
+// Updated API Service for Agro Med
 class ApiService {
     constructor() {
-        this.baseURL = 'https://agro-med-backend-isuh.onrender.com';
+        this.baseURL = 'https://agro-med-backend-isuh.onrender.com/api'; // <-- added `/api` prefix for consistency
     }
 
-    // AUTHENTICATION
+    // ---- AUTHENTICATION ----
     async signup(fullname, email, password, phone) {
-        try {
-            const response = await fetch(`${this.baseURL}/auth/signup`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ fullname, email, password, phone })
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Signup error:', error);
-            throw error;
-        }
+        return this._post('/auth/signup', { fullname, email, password, phone });
     }
 
     async signin(email, password) {
-        try {
-            const response = await fetch(`${this.baseURL}/auth/signin`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Signin error:', error);
-            throw error;
-        }
+        return this._post('/auth/signin', { email, password });
     }
 
-    // USER PROFILE
     async getUserProfile(token) {
-        try {
-            const response = await fetch(`${this.baseURL}/auth/profile`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data.user;
-        } catch (error) {
-            console.error('Profile fetch error:', error);
-            throw error;
-        }
+        return this._get('/auth/profile', token);
     }
 
     async updateProfile(token, userData) {
-        try {
-            const response = await fetch(`${this.baseURL}/auth/profile`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(userData)
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Update profile error:', error);
-            throw error;
-        }
+        return this._put('/auth/profile', userData, token);
     }
 
     async changePassword(token, newPassword) {
-        try {
-            const response = await fetch(`${this.baseURL}/auth/change-password`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ newPassword })
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Change password error:', error);
-            throw error;
-        }
+        return this._post('/auth/change-password', { newPassword }, token);
     }
 
-    // IMAGE AND PREDICTION
+    // ---- IMAGE UPLOAD & PREDICTION ----
     async uploadImage(imageFile, token) {
-        try {
-            if (!token) {
-                throw new Error('Not authenticated.');
-            }
-            const formData = new FormData();
-            formData.append('image', imageFile);
+        if (!token) throw new Error('Not authenticated.');
 
-            const response = await fetch(`${this.baseURL}/upload`, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+        const formData = new FormData();
+        formData.append('image', imageFile);
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Upload error:', error);
-            throw error;
-        }
+        const response = await fetch(`${this.baseURL}/upload`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        return this._handleResponse(response);
     }
 
-async getPrediction(imageId, token) {
-    try {
-        if (!token) {
-            throw new Error('Not authenticated.');
-        }
+    async getPrediction(imageId, token) {
+        if (!token) throw new Error('Not authenticated.');
+
         const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({}) // send empty object if no body is needed
+            body: JSON.stringify({}) // some servers expect at least an empty JSON object
         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Prediction error:', error);
-        throw error;
+        return this._handleResponse(response);
     }
-}
 
     async getHistory(token) {
-        try {
-            if (!token) {
-                throw new Error('Not authenticated.');
-            }
-            const response = await fetch(`${this.baseURL}/history`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('History fetch error:', error);
-            throw error;
-        }
+        return this._get('/history', token);
     }
 
     async submitFeedback(predictionId, isCorrect, notes, token) {
-        try {
-            if (!token) {
-                throw new Error('Not authenticated.');
-            }
-            const response = await fetch(`${this.baseURL}/feedback`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    prediction_id: predictionId,
-                    is_correct: isCorrect,
-                    notes: notes
-                })
-            });
+        return this._post('/feedback', {
+            prediction_id: predictionId,
+            is_correct: isCorrect,
+            notes
+        }, token);
+    }
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Feedback submission error:', error);
-            throw error;
+    // ---- GENERIC HELPERS ----
+    async _get(path, token) {
+        const response = await fetch(`${this.baseURL}${path}`, {
+            method: 'GET',
+            headers: this._authHeaders(token)
+        });
+        return this._handleResponse(response);
+    }
+
+    async _post(path, body, token) {
+        const response = await fetch(`${this.baseURL}${path}`, {
+            method: 'POST',
+            headers: this._jsonHeaders(token),
+            body: JSON.stringify(body)
+        });
+        return this._handleResponse(response);
+    }
+
+    async _put(path, body, token) {
+        const response = await fetch(`${this.baseURL}${path}`, {
+            method: 'PUT',
+            headers: this._jsonHeaders(token),
+            body: JSON.stringify(body)
+        });
+        return this._handleResponse(response);
+    }
+
+    _jsonHeaders(token) {
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+        return headers;
+    }
+
+    _authHeaders(token) {
+        return token ? { 'Authorization': `Bearer ${token}` } : {};
+    }
+
+    async _handleResponse(response) {
+        let data;
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error(`Invalid JSON response. Status: ${response.status}`);
         }
+        if (!response.ok) {
+            throw new Error(data.message || `Request failed with status ${response.status}`);
+        }
+        return data;
     }
 }
 

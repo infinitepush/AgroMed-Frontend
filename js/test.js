@@ -91,17 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
         stopCameraStream();
 
         try {
-            const uploadResponse = await api.uploadImage(currentFile, token); // Pass the token here
+            const uploadResponse = await api.uploadImage(currentFile, token);
             if (!uploadResponse.success) {
                 throw new Error(uploadResponse.message);
             }
+
             const imageId = uploadResponse.image.id;
-            const predictionResponse = await api.getPrediction(imageId, token); // Pass the token here
-            if (!predictionResponse.success) {
-                throw new Error(predictionResponse.message);
+            const predictionResponse = await api.getPrediction(imageId, token);
+            if (!predictionResponse.success || !predictionResponse.prediction) {
+                throw new Error(predictionResponse.message || "No prediction returned");
             }
-            displayResult(predictionResponse);
+
+            displayResult(predictionResponse.prediction);
         } catch (error) {
+            console.error("Prediction error:", error);
             showError('Failed to analyze image. Please try again.');
         } finally {
             loadingCard.classList.add('hidden');
@@ -109,10 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Display analysis result
-    function displayResult(data) {
+    function displayResult(prediction) {
         const resultContent = document.getElementById('resultContent');
-        const prediction = data.prediction;
-        const suggestion = data.suggestion;
         
         resultContent.innerHTML = `
             <div class="space-y-4">
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
                     <h4 class="font-semibold text-lg mb-2">Suggestion</h4>
-                    <p>${suggestion.remedy}</p>
+                    <p>${prediction.suggestions || "No suggestions available"}</p>
                 </div>
             </div>
         `;
