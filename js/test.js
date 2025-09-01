@@ -112,26 +112,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Display analysis result
-    function displayResult(prediction) {
-        const resultContent = document.getElementById('resultContent');
-        
-        resultContent.innerHTML = `
-            <div class="space-y-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-lg mb-2">Prediction Result</h4>
-                    <p><strong>Disease:</strong> ${prediction.disease}</p>
-                    <p><strong>Confidence:</strong> ${(prediction.confidence * 100).toFixed(2)}%</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-lg mb-2">Suggestion</h4>
-                    <p>${prediction.suggestions || "No suggestions available"}</p>
-                </div>
-            </div>
-        `;
+    // Display analysis result
+function displayResult(prediction) {
+    const resultContent = document.getElementById('resultContent');
+    const resultImagePreview = document.getElementById('resultImagePreview');
 
-        hideAllCards();
-        resultCard.classList.remove('hidden');
+    // Show the image that was analyzed
+    if (currentFile) {
+        resultImagePreview.innerHTML = `
+            <img src="${URL.createObjectURL(currentFile)}" 
+                 alt="Analyzed Crop" 
+                 class="w-64 h-64 object-cover rounded-lg shadow-md" />
+        `;
+    } else {
+        resultImagePreview.innerHTML = '';
     }
+
+    // Show prediction + suggestion
+    resultContent.innerHTML = `
+        <div class="space-y-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-lg mb-2">Prediction Result</h4>
+                <p><strong>Disease:</strong> ${prediction.disease}</p>
+                <p><strong>Confidence:</strong> ${(prediction.confidence * 100).toFixed(2)}%</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-lg mb-2">Suggestion</h4>
+                <p>${prediction.suggestions || "No suggestions available"}</p>
+            </div>
+        </div>
+    `;
+
+    hideAllCards();
+    resultCard.classList.remove('hidden');
+}
+
 
     // Stop the camera stream
     function stopCameraStream() {
