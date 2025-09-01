@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function displayResult(prediction) {
+    console.log("Prediction received in frontend:", prediction);
     const resultContent = document.getElementById('resultContent');
     
     resultContent.innerHTML = `
