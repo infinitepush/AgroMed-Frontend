@@ -112,21 +112,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function displayResult(prediction) {
-    console.log("Prediction received in frontend:", prediction);
     const resultContent = document.getElementById('resultContent');
-    
+    const suggestion = prediction.suggestion || {};
+
     resultContent.innerHTML = `
-        <div class="space-y-4">
+        <div class="space-y-6">
+            <!-- Image First -->
             <div class="bg-gray-50 p-4 rounded-lg text-center">
-                <img src="${previewImg.src}" alt="Analyzed Image" class="mx-auto rounded-lg shadow-md max-h-64 object-contain mb-4" />
+                <h4 class="font-semibold text-lg mb-2">Uploaded Image</h4>
+                <img src="${prediction.imageUrl}" alt="Analyzed Image" 
+                    class="mx-auto rounded-lg shadow-md max-h-64 object-contain" />
+            </div>
+
+            <!-- Prediction Result -->
+            <div class="bg-gray-50 p-4 rounded-lg">
                 <h4 class="font-semibold text-lg mb-2">Prediction Result</h4>
+                <p><strong>Crop:</strong> ${prediction.crop}</p>
                 <p><strong>Disease:</strong> ${prediction.disease}</p>
                 <p><strong>Confidence:</strong> ${(prediction.confidence * 100).toFixed(2)}%</p>
             </div>
+
+            <!-- Suggestions -->
             <div class="bg-gray-50 p-4 rounded-lg">
                 <h4 class="font-semibold text-lg mb-2">Suggestion</h4>
-                <p><strong>Remedy:</strong> ${prediction.suggestions?.remedy || "No remedy available"}</p>
-                <p><strong>Prevention:</strong> ${prediction.suggestions?.prevention || "No prevention available"}</p>
+                <p><strong>Remedy:</strong> ${suggestion.remedy || "No remedy available"}</p>
+                <p><strong>Prevention:</strong> ${suggestion.prevention || "No prevention available"}</p>
             </div>
         </div>
     `;
@@ -134,6 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
     hideAllCards();
     resultCard.classList.remove('hidden');
 }
+
+
 
 
     // Stop the camera stream
