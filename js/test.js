@@ -111,34 +111,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Display analysis result
-    // Display analysis result
-function displayResult(prediction) {
+    function displayResult(prediction) {
     const resultContent = document.getElementById('resultContent');
-    const resultImagePreview = document.getElementById('resultImagePreview');
-
-    // Show the image that was analyzed
-    if (currentFile) {
-        resultImagePreview.innerHTML = `
-            <img src="${URL.createObjectURL(currentFile)}" 
-                 alt="Analyzed Crop" 
-                 class="w-64 h-64 object-cover rounded-lg shadow-md" />
-        `;
-    } else {
-        resultImagePreview.innerHTML = '';
-    }
-
-    // Show prediction + suggestion
+    
     resultContent.innerHTML = `
         <div class="space-y-4">
-            <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+                <img src="${previewImg.src}" alt="Analyzed Image" class="mx-auto rounded-lg shadow-md max-h-64 object-contain mb-4" />
                 <h4 class="font-semibold text-lg mb-2">Prediction Result</h4>
                 <p><strong>Disease:</strong> ${prediction.disease}</p>
                 <p><strong>Confidence:</strong> ${(prediction.confidence * 100).toFixed(2)}%</p>
             </div>
             <div class="bg-gray-50 p-4 rounded-lg">
                 <h4 class="font-semibold text-lg mb-2">Suggestion</h4>
-                <p>${prediction.suggestions || "No suggestions available"}</p>
+                <p><strong>Remedy:</strong> ${prediction.suggestions?.remedy || "No remedy available"}</p>
+                <p><strong>Prevention:</strong> ${prediction.suggestions?.prevention || "No prevention available"}</p>
             </div>
         </div>
     `;
