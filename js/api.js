@@ -127,27 +127,29 @@ class ApiService {
         }
     }
 
-    async getPrediction(imageId, token) {
-        try {
-            if (!token) {
-                throw new Error('Not authenticated.');
-            }
-            const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Prediction error:', error);
-            throw error;
+async getPrediction(imageId, token) {
+    try {
+        if (!token) {
+            throw new Error('Not authenticated.');
         }
+        const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({}) // send empty object if no body is needed
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Prediction error:', error);
+        throw error;
     }
+}
 
     async getHistory(token) {
         try {
