@@ -1,7 +1,7 @@
 // Simple API Service for Agro Med
 class ApiService {
     constructor() {
-        this.baseURL = 'https://agro-med-backend-isuh.onrender.com';
+        this.baseURL = 'http://localhost:5000';
     }
 
     // AUTHENTICATION
