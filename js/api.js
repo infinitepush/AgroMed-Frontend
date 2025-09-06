@@ -12,9 +12,11 @@ class ApiService {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fullname, email, password, phone })
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Signup error:', error);
@@ -29,9 +31,11 @@ class ApiService {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Signin error:', error);
@@ -49,9 +53,11 @@ class ApiService {
                     'Authorization': `Bearer ${token}`
                 }
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             const data = await response.json();
             return data.user;
         } catch (error) {
@@ -70,9 +76,11 @@ class ApiService {
                 },
                 body: JSON.stringify(userData)
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Update profile error:', error);
@@ -90,9 +98,11 @@ class ApiService {
                 },
                 body: JSON.stringify({ newPassword })
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Change password error:', error);
@@ -106,6 +116,7 @@ class ApiService {
             if (!token) {
                 throw new Error('Not authenticated.');
             }
+
             const formData = new FormData();
             formData.append('image', imageFile);
 
@@ -120,6 +131,7 @@ class ApiService {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Upload error:', error);
@@ -127,44 +139,49 @@ class ApiService {
         }
     }
 
-async getPrediction(imageId, token) {
-    try {
-        if (!token) {
-            throw new Error('Not authenticated.');
-        }
-        const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({}) // send empty object if no body is needed
-        });
+    async getPrediction(imageId, token) {
+        try {
+            if (!token) {
+                throw new Error('Not authenticated.');
+            }
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const response = await fetch(`${this.baseURL}/predict/${imageId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({})
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Prediction error:', error);
+            throw error;
         }
-        return await response.json();
-    } catch (error) {
-        console.error('Prediction error:', error);
-        throw error;
     }
-}
 
     async getHistory(token) {
         try {
             if (!token) {
                 throw new Error('Not authenticated.');
             }
+
             const response = await fetch(`${this.baseURL}/history`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('History fetch error:', error);
@@ -172,11 +189,13 @@ async getPrediction(imageId, token) {
         }
     }
 
-    async submitFeedback(predictionId, isCorrect, notes, token) {
+    // FEEDBACK SUBMISSION — Corrected Argument Order
+    async submitFeedback(token, predictionId, isCorrect, notes) {
         try {
             if (!token) {
                 throw new Error('Not authenticated.');
             }
+
             const response = await fetch(`${this.baseURL}/feedback`, {
                 method: 'POST',
                 headers: {
@@ -193,6 +212,7 @@ async getPrediction(imageId, token) {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             return await response.json();
         } catch (error) {
             console.error('Feedback submission error:', error);
