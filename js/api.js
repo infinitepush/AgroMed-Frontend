@@ -1,7 +1,7 @@
 // Simple API Service for Agro Med
 class ApiService {
     constructor() {
-        this.baseURL = 'http://localhost:5000';
+        this.baseURL = 'https://agromed-backend-wyux.onrender.com/';
     }
 
     // AUTHENTICATION
@@ -191,6 +191,7 @@ class ApiService {
 
     // FEEDBACK SUBMISSION — Corrected Argument Order
     async submitFeedback(token, predictionId, isCorrect, notes) {
+
         try {
             if (!token) {
                 throw new Error('Not authenticated.');
