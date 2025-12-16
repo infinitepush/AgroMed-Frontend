@@ -96,11 +96,6 @@ AgroMed-Frontend/
 | **Tailwind CSS** | Utility-first CSS framework for responsive UI |
 
 <hr />
-
-## 🙏 Acknowledgments
-
-A huge thank you to **AgroMed Team** for the collaborative development, debugging, and overall project support. Your expertise and dedication were key to this success.
-
 ---
 
 <p align="center">
