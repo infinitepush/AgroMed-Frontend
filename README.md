@@ -96,7 +96,6 @@ AgroMed-Frontend/
 | **Tailwind CSS** | Utility-first CSS framework for responsive UI |
 
 <hr />
----
 
 <p align="center">
   Made with ❤️ by the AgroMed Team
